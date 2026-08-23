@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOUSAIゼミな～る｜被災地と未災地の高校生をつなぐ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1C2B39;
+    --ink-soft:#5B6570;
+    --paper:#F3EEE4;
+    --paper-deep:#E9E1D2;
+    --river:#3E6E8E;
+    --river-deep:#2A4E66;
+    --ember:#B5482A;
+    --rice:#6E8B4E;
+    --gold:#C79A3D;
+    --line:rgba(28,43,57,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Noto Sans JP', sans-serif;
+    font-weight:400;
+    line-height:1.9;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+  h1,h2,h3,.serif{ font-family:'Shippori Mincho', serif; }
+  .eyebrow{
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-size:12.5px;
+    letter-spacing:0.28em;
+    font-weight:700;
+    color:var(--river);
+    text-transform:uppercase;
+  }
+  a{ color:inherit; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 28px; }
+  section{ position:relative; }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--gold);
+    outline-offset:3px;
+  }
+
+  /* ===== NAV ===== */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(243,238,228,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1080px; margin:0 auto; padding:14px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    font-family:'Shippori Mincho', serif;
+    font-size:18px; font-weight:700; color:var(--ink);
+    display:flex; align-items:center; gap:9px;
+  }
+  .brand-mark{
+    width:11px; height:11px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--gold), var(--ember) 70%);
+    flex-shrink:0;
+  }
+  nav.links{ display:flex; gap:26px; }
+  nav.links a{
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-size:13px; font-weight:500; letter-spacing:0.03em;
+    text-decoration:none; color:var(--ink-soft);
+    position:relative; padding-bottom:3px;
+  }
+  nav.links a:hover{ color:var(--river-deep); }
+  .nav-cta{
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-size:12.5px; font-weight:700;
+    background:var(--ink); color:var(--paper) !important;
+    padding:9px 18px; border-radius:2px; text-decoration:none;
+    letter-spacing:0.05em;
+  }
+  .menu-btn{ display:none; background:none; border:none; cursor:pointer; padding:6px; }
+  .menu-btn span{ display:block; width:22px; height:2px; background:var(--ink); margin:5px 0; }
+
+  @media (max-width:820px){
+    nav.links{ display:none; }
+    .menu-btn{ display:block; }
+    .nav-cta{ display:none; }
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    min-height:100svh;
+    display:flex; align-items:center;
+    padding:120px 0 80px;
+    background:
+      radial-gradient(ellipse 900px 500px at 82% -8%, rgba(62,110,142,0.16), transparent 60%),
+      radial-gradient(ellipse 700px 500px at -5% 100%, rgba(199,154,61,0.14), transparent 60%),
+      var(--paper);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;
+  }
+  .hero-eyebrow{ margin-bottom:22px; }
+  .hero h1{
+    font-size:clamp(34px, 4.6vw, 58px);
+    line-height:1.38;
+    font-weight:800;
+    color:var(--ink);
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:linear-gradient(180deg, transparent 62%, rgba(199,154,61,0.45) 62%);
+  }
+  .hero-lede{
+    margin-top:26px;
+    font-size:16px;
+    color:var(--ink-soft);
+    max-width:46ch;
+  }
+  .hero-actions{ margin-top:36px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-primary{
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-weight:700; font-size:14px;
+    background:var(--river-deep); color:#fff;
+    padding:15px 26px; text-decoration:none; border-radius:2px;
+    letter-spacing:0.03em;
+    transition:background 0.2s ease, transform 0.2s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{ background:var(--ink); transform:translateY(-1px); }
+  .btn-ghost{
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-weight:700; font-size:14px;
+    color:var(--ink); border:1px solid var(--ink);
+    padding:14px 25px; text-decoration:none; border-radius:2px;
+    letter-spacing:0.03em;
+    transition:background 0.2s ease, color 0.2s ease;
+  }
+  .btn-ghost:hover{ background:var(--ink); color:var(--paper); }
+
+  .hero-stats{ margin-top:44px; display:flex; gap:34px; flex-wrap:wrap; }
+  .stat b{ font-family:'Shippori Mincho', serif; font-size:28px; color:var(--river-deep); display:block; }
+  .stat span{ font-size:12.5px; color:var(--ink-soft); }
+
+  /* signature network diagram */
+  .network-box{
+    position:relative; aspect-ratio:1/1.08;
+    background:var(--ink);
+    border-radius:3px;
+    overflow:hidden;
+    box-shadow:0 30px 60px -20px rgba(28,43,57,0.45);
+  }
+  .network-box::before{
+    content:"つながりの地図";
+    position:absolute; top:20px; left:22px;
+    font-family:'Shippori Mincho', serif;
+    color:rgba(243,238,228,0.55); font-size:13px; letter-spacing:0.08em;
+    z-index:3;
+  }
+  .network-box svg{ width:100%; height:100%; display:block; }
+  .net-line{
+    fill:none; stroke:var(--gold); stroke-width:1.4;
+    stroke-dasharray:6 6; opacity:0.55;
+    stroke-dashoffset:1000; stroke-dasharray:1000;
+    animation:draw 2.6s ease forwards;
+  }
+  .net-line.b{ animation-delay:0.15s; stroke:var(--river);}
+  .net-line.c{ animation-delay:0.3s; }
+  .net-line.d{ animation-delay:0.45s; stroke:var(--river);}
+  .net-line.e{ animation-delay:0.6s; }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  .net-node{ fill:var(--paper); }
+  .net-node.origin{ fill:var(--ember); }
+  .net-pulse{
+    fill:none; stroke:var(--gold); stroke-width:1; opacity:0;
+    animation:pulse 3.2s ease-out infinite;
+  }
+  @keyframes pulse{
+    0%{ r:5; opacity:0.7; }
+    100%{ r:26; opacity:0; }
+  }
+  .net-label{
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-size:9.5px; fill:rgba(243,238,228,0.72); letter-spacing:0.02em;
+  }
+  .net-label.origin{ fill:var(--gold); font-weight:700; font-size:10.5px; }
+
+  @media (max-width:900px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .network-box{ order:-1; max-width:340px; margin:0 auto; }
+  }
+
+  /* ===== SECTION SHELL ===== */
+  .section-pad{ padding:110px 0; }
+  .section-head{ max-width:640px; margin-bottom:56px; }
+  .section-head h2{ font-size:clamp(26px,3vw,36px); margin-top:14px; font-weight:700; }
+  .section-head p{ margin-top:16px; color:var(--ink-soft); font-size:15.5px; }
+  .divider{
+    border:none; height:1px; background:var(--line); margin:0;
+  }
+
+  /* ===== ACTIVITIES (4 pillars) ===== */
+  #activities{ background:var(--paper-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .pillar-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); }
+  .pillar-card{
+    background:var(--paper-deep); padding:34px 26px;
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .pillar-num{ font-family:'Shippori Mincho', serif; font-size:13px; color:var(--gold); font-weight:700; letter-spacing:0.05em; }
+  .pillar-card h4{ font-family:'Shippori Mincho', serif; font-size:18px; font-weight:700; line-height:1.5; }
+  .pillar-card p{ font-size:13.5px; color:var(--ink-soft); }
+  @media (max-width:820px){ .pillar-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:520px){ .pillar-grid{ grid-template-columns:1fr; } }
+
+  /* ===== KOKUTAI TIMELINE ===== */
+  #kokutai-history{ background:var(--paper); }
+  .kt-line{ position:relative; padding-left:2px; }
+  .kt-track{
+    position:absolute; left:63px; top:8px; bottom:8px; width:1px;
+    background:var(--line);
+  }
+  .kt-row{
+    position:relative; display:grid; grid-template-columns:64px 1fr; gap:30px;
+    padding:22px 0;
+  }
+  .kt-year{ font-family:'Shippori Mincho', serif; font-size:15px; font-weight:700; color:var(--ink-soft); position:relative; z-index:2; }
+  .kt-row.current .kt-year{ color:var(--ember); }
+  .kt-dot{
+    position:absolute; left:60px; top:26px; width:8px; height:8px; border-radius:50%;
+    background:var(--river); z-index:2;
+  }
+  .kt-row.current .kt-dot{ background:var(--ember); box-shadow:0 0 0 4px rgba(181,72,42,0.16); }
+  .kt-dot.own{ background:var(--gold); }
+  .kt-place .tag-own{
+    font-family:'Zen Kaku Gothic New', sans-serif; font-size:10px; font-weight:700;
+    color:var(--ink); background:rgba(199,154,61,0.28); border-radius:20px; padding:2px 10px; margin-left:10px;
+  }
+  .kt-body{ padding-left:6px; }
+  .kt-place{ font-weight:700; font-size:15.5px; }
+  .kt-place .tag-current{
+    font-family:'Zen Kaku Gothic New', sans-serif; font-size:10px; font-weight:700;
+    color:#fff; background:var(--ember); border-radius:20px; padding:2px 10px; margin-left:10px;
+  }
+  .kt-desc{ color:var(--ink-soft); font-size:14px; margin-top:4px; }
+  @media (max-width:600px){
+    .kt-track{ left:38px; } .kt-dot{ left:35px; }
+    .kt-row{ grid-template-columns:40px 1fr; gap:18px; }
+  }
+
+  /* ===== ABOUT ===== */
+  #about{ background:var(--paper); }
+  .about-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;
+  }
+  .mission-card{
+    background:var(--ink); color:var(--paper);
+    padding:38px 34px; border-radius:3px;
+    position:relative;
+  }
+  .mission-card::before{
+    content:"見えないつながりを、可視化する。";
+    font-family:'Shippori Mincho', serif;
+    font-size:20px; display:block; margin-bottom:18px;
+    color:var(--gold); font-weight:700; line-height:1.6;
+  }
+  .mission-card p{ font-size:14.5px; color:rgba(243,238,228,0.82); }
+  .about-body p{ margin-bottom:18px; color:var(--ink); font-size:15.5px; }
+  .about-body p:last-child{ margin-bottom:0; }
+  .about-body strong{ color:var(--river-deep); font-weight:700; }
+
+  /* ===== ORIGIN TIMELINE ===== */
+  #origin{ background:var(--ink-soft-bg, var(--paper-deep)); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .origin-inner{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center; }
+  .origin-plate{
+    background:var(--river-deep); color:var(--paper);
+    padding:44px 36px; border-radius:3px; position:relative;
+  }
+  .origin-plate .year{ font-family:'Shippori Mincho', serif; font-size:52px; font-weight:800; color:var(--gold); }
+  .origin-plate .place{ font-size:14px; letter-spacing:0.1em; margin-top:6px; font-family:'Zen Kaku Gothic New', sans-serif;}
+  .origin-plate p{ margin-top:22px; font-size:14px; color:rgba(243,238,228,0.85); }
+  .origin-text h3{ font-size:22px; font-weight:700; margin-bottom:16px; }
+  .origin-text p{ color:var(--ink-soft); font-size:15.5px; margin-bottom:14px; }
+
+  /* ===== SCHOOLS ===== */
+  #schools{ background:var(--paper); }
+  .school-list{ display:flex; flex-direction:column; }
+  .school-row{
+    display:grid; grid-template-columns:64px 1fr 1.4fr; gap:26px;
+    padding:28px 0; border-top:1px solid var(--line);
+    align-items:start;
+  }
+  .school-row:last-child{ border-bottom:1px solid var(--line); }
+  .school-node{
+    width:44px; height:44px; border-radius:50%;
+    background:var(--paper-deep); border:1.5px solid var(--river);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Shippori Mincho', serif; font-weight:700; color:var(--river-deep); font-size:14px;
+  }
+  .school-row.origin .school-node{ background:var(--ember); border-color:var(--ember); color:#fff; }
+  .school-name{ font-weight:700; font-size:15.5px; line-height:1.6; }
+  .school-name .sub{ display:block; font-size:12.5px; color:var(--ink-soft); font-weight:400; margin-top:4px; }
+  .school-focus{ color:var(--ink-soft); font-size:14.5px; }
+  .school-focus b{ color:var(--ink); font-weight:700; }
+  .tag-origin{
+    display:inline-block; margin-top:8px;
+    font-family:'Zen Kaku Gothic New', sans-serif; font-size:10.5px; font-weight:700;
+    color:var(--ember); border:1px solid var(--ember); border-radius:20px;
+    padding:2px 10px; letter-spacing:0.05em;
+  }
+  @media (max-width:700px){
+    .school-row{ grid-template-columns:44px 1fr; }
+    .school-focus{ grid-column:2; }
+  }
+  .past-schools{ margin-top:44px; padding-top:36px; border-top:1px dashed var(--line); }
+  .past-tags{ display:flex; flex-wrap:wrap; gap:10px; }
+  .past-tag{
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-size:13px; color:var(--ink-soft);
+    border:1px solid var(--line); border-radius:20px;
+    padding:8px 16px; background:var(--paper-deep);
+  }
+
+  /* ===== ARCHIVE ===== */
+  #archive{ background:var(--ink); color:var(--paper); }
+  #archive .eyebrow{ color:var(--gold); }
+  #archive .section-head p{ color:rgba(243,238,228,0.7); }
+  .archive-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(243,238,228,0.14); }
+  .archive-card{
+    background:var(--ink); padding:32px 28px;
+    display:flex; flex-direction:column; gap:14px; min-height:230px;
+  }
+  .archive-card .tag{ font-family:'Zen Kaku Gothic New',sans-serif; font-size:11px; letter-spacing:0.1em; color:var(--gold); font-weight:700; }
+  .archive-card h4{ font-family:'Shippori Mincho', serif; font-size:18px; font-weight:700; line-height:1.5; }
+  .archive-card p{ font-size:13.5px; color:rgba(243,238,228,0.68); margin-top:auto; }
+  @media (max-width:820px){ .archive-grid{ grid-template-columns:1fr; } }
+
+  /* ===== NEWS / EVENT ===== */
+  #news{ background:var(--paper); }
+  .event-card{
+    display:grid; grid-template-columns:180px 1fr; gap:40px;
+    background:var(--paper-deep); border-radius:3px; padding:38px;
+    border-left:4px solid var(--ember);
+  }
+  .event-date{ font-family:'Shippori Mincho', serif; }
+  .event-date .d{ font-size:40px; font-weight:800; color:var(--ember); line-height:1; }
+  .event-date .m{ font-size:14px; color:var(--ink-soft); margin-top:6px; }
+  .event-body h3{ font-size:20px; font-weight:700; margin-bottom:10px; }
+  .event-body p{ color:var(--ink-soft); font-size:14.5px; margin-bottom:6px; }
+  .event-meta{ display:flex; gap:22px; margin-top:16px; flex-wrap:wrap; }
+  .event-meta div{ font-size:12.5px; color:var(--ink-soft); }
+  .event-meta b{ display:block; color:var(--ink); font-family:'Zen Kaku Gothic New',sans-serif; font-size:11px; letter-spacing:0.08em; margin-bottom:2px; }
+  @media (max-width:600px){ .event-card{ grid-template-columns:1fr; } }
+
+  .news-list{ margin-top:26px; }
+  .news-item{
+    display:flex; gap:24px; padding:18px 0; border-top:1px solid var(--line);
+    font-size:14.5px; align-items:baseline; flex-wrap:wrap;
+  }
+  .news-item time{ color:var(--river-deep); font-weight:700; font-size:13px; width:90px; flex-shrink:0; }
+  .news-item span{ color:var(--ink-soft); }
+
+  /* ===== CONTACT / FOOTER ===== */
+  #contact{ background:var(--ink); color:var(--paper); padding-bottom:0; }
+  .contact-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; }
+  .contact-grid h2{ color:var(--paper); }
+  .contact-grid .section-head p{ color:rgba(243,238,228,0.68); }
+  .info-block{ margin-bottom:22px; }
+  .info-block .k{ font-family:'Zen Kaku Gothic New',sans-serif; font-size:11px; letter-spacing:0.1em; color:var(--gold); font-weight:700; margin-bottom:6px; }
+  .info-block .v{ font-size:15px; }
+  .info-block a{ color:var(--paper); text-decoration:underline; text-decoration-color:rgba(243,238,228,0.35); }
+  .sns-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid rgba(243,238,228,0.4); color:var(--paper);
+    padding:12px 20px; border-radius:2px; text-decoration:none;
+    font-family:'Zen Kaku Gothic New',sans-serif; font-size:13px; font-weight:700;
+    margin-top:8px;
+  }
+  .sns-btn:hover{ background:rgba(243,238,228,0.1); }
+  footer{
+    margin-top:80px; border-top:1px solid rgba(243,238,228,0.15);
+    padding:26px 0; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-size:12px; color:rgba(243,238,228,0.5);
+  }
+
+  /* scroll reveal */
+  .reveal{ opacity:0; transform:translateY(22px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand"><span class="brand-mark"></span>BOUSAIゼミな～る</a>
+    <nav class="links">
+      <a href="#about">私たちについて</a>
+      <a href="#activities">日頃の活動</a>
+      <a href="#schools">参加校</a>
+      <a href="#kokutai-history">こくたい参加実績</a>
+      <a href="#news">お知らせ</a>
+    </nav>
+    <a class="nav-cta" href="#news">出展情報を見る</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow hero-eyebrow">HIGH SCHOOL DISASTER RESILIENCE NETWORK</div>
+        <h1>被災地と未災地の高校生を、<br><em>問い</em>でつなぐ。</h1>
+        <p class="hero-lede">2020年、西日本豪雨の被災地・宇和島で始まった小さな対話が、全国6校・1団体の学びの輪になりました。経験の有無を超えて、防災を「自分事」にしていく高校生たちの実践共同体です。</p>
+        <div class="hero-actions">
+          <a href="#origin" class="btn-primary">私たちの物語を読む</a>
+          <a href="#schools" class="btn-ghost">参加校を見る</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><b>10校+1団体</b><span>これまでの参加実績</span></div>
+          <div class="stat"><b>2020</b><span>宇和島で発足</span></div>
+          <div class="stat"><b>2026</b><span>ぼうさいこくたい出展</span></div>
+        </div>
+      </div>
+
+      <div class="network-box" aria-hidden="true">
+        <svg viewBox="0 0 320 340">
+          <path class="net-line a" d="M160,210 C120,150 90,90 70,52" />
+          <path class="net-line b" d="M160,210 C185,150 210,100 232,58" />
+          <path class="net-line c" d="M160,210 C130,230 90,240 54,238" />
+          <path class="net-line d" d="M160,210 C200,235 240,232 268,208" />
+          <path class="net-line e" d="M160,210 C160,170 158,120 152,80" />
+
+          <circle class="net-pulse" cx="160" cy="210" r="5" style="animation-delay:0s" />
+          <circle class="net-pulse" cx="160" cy="210" r="5" style="animation-delay:1s" />
+
+          <circle class="net-node origin" cx="160" cy="210" r="7"/>
+          <text class="net-label origin" x="172" y="215">宇和島（起点）</text>
+
+          <circle class="net-node" cx="70" cy="52" r="5"/>
+          <text class="net-label" x="42" y="40">大湊高校</text>
+
+          <circle class="net-node" cx="232" cy="58" r="5"/>
+          <text class="net-label" x="240" y="52">福島高校</text>
+
+          <circle class="net-node" cx="54" cy="238" r="5"/>
+          <text class="net-label" x="8" y="256">総社高校</text>
+
+          <circle class="net-node" cx="268" cy="208" r="5"/>
+          <text class="net-label" x="248" y="196">あすパ</text>
+
+          <circle class="net-node" cx="152" cy="80" r="5"/>
+          <text class="net-label" x="130" y="70">宇和島南</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">MISSION</div>
+        <h2>「忘れない」を、繰り返すだけで終わらせない。</h2>
+      </div>
+      <div class="about-grid">
+        <div class="mission-card reveal">
+          <p>地域の災害対応や防災への取り組みを共有し、学び合う。多地域連携を深めることで、災害レジリエンスを社会的に構築する ── それが BOUSAIゼミな～る の目指す場所です。</p>
+        </div>
+        <div class="about-body reveal">
+          <p><strong>被災地と未災地。</strong>この社会は、体験を語り継ぐことと、忘れていくことを、同時に繰り返してきました。BOUSAIゼミな～るは、その間に立つ高校生たちが、互いの現場から学び合うための対話の場です。</p>
+          <p>自主防災組織との連携、地震データの分析、震災の体験伝承、原発立地・過疎地域の防災実践 ── 立場も経験も異なる高校生が、それぞれの地域の現場知を持ち寄ります。</p>
+          <p>目指すのは、経験の<strong>有無を超えて「自分事化」</strong>していくプロセスそのものを、高校生自身の言葉で可視化すること。この取組は日本災害復興学会でも研究発表されています。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ACTIVITIES ===== -->
+  <section id="activities" class="section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">EVERYDAY PRACTICE</div>
+        <h2>日頃の活動</h2>
+        <p>月に一度のオンライン定例会を軸に、4つの柱で活動を積み重ねています。</p>
+      </div>
+    </div>
+    <div class="pillar-grid reveal">
+      <div class="pillar-card">
+        <div class="pillar-num">01</div>
+        <h4>多地域連携</h4>
+        <p>愛媛・福島・岡山・兵庫・青森など、全国の高校生をオンラインで繋ぐ。</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">02</div>
+        <h4>対話と学び合い</h4>
+        <p>被災体験・防災研究を、高校生自身の言葉で報告・議論する定例会。</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">03</div>
+        <h4>現場知の集積</h4>
+        <p>体験から得た「現場知」を、多地域間で蓄積・継承する仕組み。</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">04</div>
+        <h4>社会への発信</h4>
+        <p>学会発表やイベント出展を通じて、活動の成果を地域の外へひらく。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ORIGIN ===== -->
+  <section id="origin" class="section-pad">
+    <div class="wrap">
+      <div class="origin-inner">
+        <div class="origin-plate reveal">
+          <div class="year">2020</div>
+          <div class="place">西日本豪雨 被災地・宇和島</div>
+          <p>愛媛県宇和島市。豪雨で傷んだ町で始まった、高校生と地域をつなぐ小さな一歩が、すべての起点になりました。</p>
+        </div>
+        <div class="origin-text reveal">
+          <div class="eyebrow">ORIGIN STORY</div>
+          <h3 style="margin-top:12px;">起点は、ひとつの被災地でした。</h3>
+          <p>2020年、西日本豪雨の被災地である宇和島を起点に、この取組は発足しました。当初は地域の中だけで完結していた対話が、少しずつ他の被災地・未災地の高校とつながり、多地域間の対話と現場知の集積へと育っていきました。</p>
+          <p>今では、福島・岡山・兵庫・青森・愛媛 ── 距離も経験も異なる高校生たちが、同じ問いを共有しています。「災害レジリエンスは、社会的にどうつくられるのか。」その答えを、大人ではなく高校生自身が探し続けています。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCHOOLS ===== -->
+  <section id="schools" class="section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">PARTICIPATING SCHOOLS</div>
+        <h2>6校・1団体、それぞれの現場から。</h2>
+        <p>拠点も、抱える課題も違う。だからこそ、持ち寄る知には厚みがあります。</p>
+      </div>
+
+      <div class="school-list reveal">
+        <div class="school-row origin">
+          <div class="school-node">起</div>
+          <div class="school-name">愛媛県立宇和島東高等学校</div>
+          <div class="school-focus"><b>西日本豪雨の経験を踏まえ、地元発の防災を実践・発信。</b>すべての活動の起点となった学校。<span class="tag-origin">起点校</span></div>
+        </div>
+        <div class="school-row">
+          <div class="school-node">南</div>
+          <div class="school-name">宇和島南中等教育学校<span class="sub">2年目から参加</span></div>
+          <div class="school-focus"><b>地元・宇和島の防災を、次の世代の視点で継承。</b>宇和島東高校に続き、活動2年目から加わった。</div>
+        </div>
+        <div class="school-row">
+          <div class="school-node">福</div>
+          <div class="school-name">福島県立福島高等学校</div>
+          <div class="school-focus"><b>3.11後の地震データを科学的に分析。</b>震災後15年の観測データから、地域の揺れの特性を読み解く。</div>
+        </div>
+        <div class="school-row">
+          <div class="school-node">総</div>
+          <div class="school-name">岡山県立総社高等学校</div>
+          <div class="school-focus"><b>能登半島地震の被災地から学ぶ。</b>遠く離れた被災地に足を運び、自分たちの地域に引きつけて考える。</div>
+        </div>
+        <div class="school-row">
+          <div class="school-node">あ</div>
+          <div class="school-name">あすパ・ユース震災語り部隊<span class="sub">神戸市灘区</span></div>
+          <div class="school-focus"><b>阪神・淡路大震災の体験伝承。</b>語り継ぐ側として、次の世代に記憶をつなぐ実践知を蓄積する。</div>
+        </div>
+        <div class="school-row">
+          <div class="school-node">大</div>
+          <div class="school-name">青森県立大湊高等学校<span class="sub">下北BOUSAIネットワーク</span></div>
+          <div class="school-focus"><b>原発立地・過疎地域の防災実践。</b>人口減少が進む地域固有の防災課題に向き合う。</div>
+        </div>
+      </div>
+
+      <div class="past-schools reveal">
+        <div class="eyebrow" style="margin-bottom:14px;">SO FAR</div>
+        <h3 style="font-size:17px; font-weight:700; margin-bottom:16px;">これまでの参加校</h3>
+        <p style="color:var(--ink-soft); font-size:14.5px; margin-bottom:20px; max-width:56ch;">現在の6校・1団体に加え、これまで以下の学校もBOUSAIゼミな～るの活動に参加してきました。</p>
+        <div class="past-tags">
+          <span class="past-tag">愛媛県立八幡浜高等学校</span>
+          <span class="past-tag">愛媛県立南宇和高等学校</span>
+          <span class="past-tag">岡山県立矢掛高等学校</span>
+          <span class="past-tag">愛知県立大府高等学校</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ARCHIVE ===== -->
+  <section id="archive" class="section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">RECORD</div>
+        <h2>対話は、記録されて初めて、次に手渡せる。</h2>
+        <p>高校生たちの探究と発表は、学術的な場でも積み重ねられています。</p>
+      </div>
+    </div>
+    <div class="archive-grid reveal">
+      <div class="archive-card">
+        <div class="tag">ACADEMIC</div>
+        <h4>日本災害復興学会 研究発表</h4>
+        <p>高校生の実践を、学術的な災害復興研究の文脈に接続。</p>
+      </div>
+      <div class="archive-card">
+        <div class="tag">FIELD</div>
+        <h4>多地域交流・現地訪問</h4>
+        <p>被災地と未災地、高校生同士が互いの現場を訪ね合う交流活動。</p>
+      </div>
+      <div class="archive-card">
+        <div class="tag">EXHIBITION</div>
+        <h4>各地イベントでの出展・発表</h4>
+        <p>活動の成果を、地域の外へ ── 一般来場者との対話の場をつくる。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KOKUTAI HISTORY ===== -->
+  <section id="kokutai-history" class="section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">KOKUTAI HISTORY</div>
+        <h2>これまでのぼうさいこくたいへの参加</h2>
+        <p>2022年の初出展から、規模も内容も少しずつ育ってきました。2025年には独自の神戸研修も実施しています。</p>
+      </div>
+
+      <div class="kt-line reveal">
+        <div class="kt-track" aria-hidden="true"></div>
+
+        <div class="kt-row">
+          <div class="kt-year">2022</div>
+          <div class="kt-dot" aria-hidden="true"></div>
+          <div class="kt-body">
+            <div class="kt-place">神戸</div>
+            <div class="kt-desc">ぼうさいこくたいに初出展。</div>
+          </div>
+        </div>
+
+        <div class="kt-row">
+          <div class="kt-year">2023</div>
+          <div class="kt-dot" aria-hidden="true"></div>
+          <div class="kt-body">
+            <div class="kt-place">横浜</div>
+            <div class="kt-desc">ワークショップ形式で出展。</div>
+          </div>
+        </div>
+
+        <div class="kt-row">
+          <div class="kt-year">2024</div>
+          <div class="kt-dot" aria-hidden="true"></div>
+          <div class="kt-body">
+            <div class="kt-place">熊本</div>
+            <div class="kt-desc">77名が参加し、大盛況となる。</div>
+          </div>
+        </div>
+
+        <div class="kt-row">
+          <div class="kt-year">2025</div>
+          <div class="kt-dot own" aria-hidden="true"></div>
+          <div class="kt-body">
+            <div class="kt-place">神戸研修<span class="tag-own">独自開催</span></div>
+            <div class="kt-desc">ぼうさいこくたいとは別に、BOUSAIゼミな～る独自の研修として神戸で実施。</div>
+          </div>
+        </div>
+
+        <div class="kt-row current">
+          <div class="kt-year">2026</div>
+          <div class="kt-dot" aria-hidden="true"></div>
+          <div class="kt-body">
+            <div class="kt-place">鳥取・倉吉<span class="tag-current">今回</span></div>
+            <div class="kt-desc">B-099 ブース展示。6校・1団体が参加。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEWS ===== -->
+  <section id="news" class="section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">NEWS &amp; EVENT</div>
+        <h2>お知らせ</h2>
+      </div>
+
+      <div class="event-card reveal">
+        <div class="event-date">
+          <div class="d">10.17</div>
+          <div class="m">— 10.18, 2026</div>
+        </div>
+        <div class="event-body">
+          <h3>ぼうさいこくたい2026 に出展します</h3>
+          <p>「高校生の私たちにできること」ー被災地・地域・データ・科学、多視点から拓く災害レジリエンス</p>
+          <p>6校・1団体の高校生が、それぞれの探究をブースで発表・交流します。</p>
+          <div class="event-meta">
+            <div><b>出展番号</b>B-099（ブース展示）</div>
+            <div><b>会場</b>鳥取県立美術館 ひろま</div>
+            <div><b>時間</b>10:30〜17:30</div>
+            <div><b>主催</b>防災推進国民大会2026実行委員会</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-list reveal">
+        <div class="news-item"><time>2026.08</time><span>ぼうさいこくたい2026 出展者マイページを提出しました。</span></div>
+        <div class="news-item"><time>2026.07</time><span>宇和島東高等学校・宇和島南中等教育学校の参加が確定しました。</span></div>
+        <div class="news-item"><time>2020.07</time><span>西日本豪雨の被災地・宇和島で活動を開始しました。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="section-pad">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div>
+          <div class="section-head reveal" style="margin-bottom:36px;">
+            <div class="eyebrow">CONTACT</div>
+            <h2>話を聞きに来てください。</h2>
+            <p>現場での交流も、活動へのご質問も、いつでも歓迎しています。</p>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="info-block">
+            <div class="k">運営事務局</div>
+            <div class="v">愛媛大学 地域協働推進機構</div>
+          </div>
+          <div class="info-block">
+            <div class="k">ウェブサイト</div>
+            <div class="v"><a href="https://uwajima-npo-center.jp/blogs/bousai-seminor" target="_blank" rel="noopener">uwajima-npo-center.jp/blogs/bousai-seminor</a></div>
+          </div>
+          <div class="info-block">
+            <div class="k">SNS</div>
+            <a class="sns-btn" href="https://www.instagram.com/bousai_zemi_na_ru/" target="_blank" rel="noopener">Instagram で見る ↗</a>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <span>© 2026 BOUSAIゼミな～る実行委員会</span>
+        <span>被災地と未災地の高校生をつなぐ、対話のプラットフォーム</span>
+      </footer>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold:0.14 });
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
