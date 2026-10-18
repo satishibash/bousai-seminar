@@ -471,4 +471,729 @@
   .event-card{
     display:grid; grid-template-columns:190px 130px 1fr; gap:32px;
     background:var(--paper-deep); border-radius:3px; padding:38px;
- 
+    border-left:4px solid var(--ember);
+    align-items:start;
+  }
+  .event-poster{ grid-row:1 / span 2; }
+  .event-poster img{
+    width:100%; border-radius:3px; display:block;
+    box-shadow:0 10px 24px -8px rgba(28,43,57,0.35);
+  }
+  .event-date{ font-family:'Shippori Mincho', serif; }
+  .event-date .d{ font-size:40px; font-weight:800; color:var(--ember); line-height:1; }
+  .event-date .m{ font-size:14px; color:var(--ink-soft); margin-top:6px; }
+  .event-body h3{ font-size:20px; font-weight:700; margin-bottom:10px; }
+  .event-body p{ color:var(--ink-soft); font-size:14.5px; margin-bottom:6px; }
+  .event-meta{ display:flex; gap:22px; margin-top:16px; flex-wrap:wrap; }
+  .event-meta div{ font-size:12.5px; color:var(--ink-soft); }
+  .event-meta b{ display:block; color:var(--ink); font-family:'Zen Kaku Gothic New',sans-serif; font-size:11px; letter-spacing:0.08em; margin-bottom:2px; }
+  @media (max-width:820px){
+    .event-card{ grid-template-columns:150px 1fr; }
+    .event-poster{ grid-row:1; grid-column:1; }
+    .event-date{ grid-row:2; grid-column:1; }
+    .event-body{ grid-row:1 / span 2; grid-column:2; }
+  }
+  @media (max-width:600px){
+    .event-card{ grid-template-columns:1fr; }
+    .event-poster{ grid-row:auto; grid-column:auto; max-width:220px; }
+    .event-date{ grid-row:auto; grid-column:auto; }
+    .event-body{ grid-row:auto; grid-column:auto; }
+  }
+
+
+  .report{ background:#fff; border:1px solid var(--line); border-top:4px solid var(--ember); border-radius:4px; padding:34px 36px; margin-bottom:34px; }
+  .report-date{ color:var(--ember); font-weight:700; font-size:13px; letter-spacing:.08em; }
+  .report h3{ font-family:'Shippori Mincho',serif; font-size:clamp(20px,2.6vw,26px); margin:8px 0 18px; line-height:1.5; }
+  .report p{ color:var(--ink-soft); line-height:2; max-width:46em; margin:0 0 12px; }
+  .report-photos{ display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:24px; }
+  .rp-item{ margin:0; background:var(--ink); border-radius:3px; overflow:hidden; }
+  .rp-item img{ width:100%; height:260px; object-fit:cover; display:block; }
+  .rp-item.rp-wide{ grid-column:1/-1; } .rp-item.rp-wide img{ height:auto; max-height:520px; }
+  .rp-item figcaption{ color:#fff; font-size:12.5px; padding:8px 12px; background:var(--ink); }
+  @media (max-width:640px){ .report{ padding:24px 18px; } .report-photos{ grid-template-columns:1fr; } .rp-item img{ height:220px; } }
+  .news-list{ margin-top:26px; }
+  .news-item{
+    display:flex; gap:24px; padding:18px 0; border-top:1px solid var(--line);
+    font-size:14.5px; align-items:baseline; flex-wrap:wrap;
+  }
+  .news-item time{ color:var(--river-deep); font-weight:700; font-size:13px; width:90px; flex-shrink:0; }
+  .news-item span{ color:var(--ink-soft); }
+
+  /* ===== CONTACT / FOOTER ===== */
+  #contact{ background:var(--ink); color:var(--paper); padding-bottom:0; }
+  .contact-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; }
+  .contact-grid h2{ color:var(--paper); }
+  .contact-grid .section-head p{ color:rgba(243,238,228,0.68); }
+  .info-block{ margin-bottom:22px; }
+  .info-block .k{ font-family:'Zen Kaku Gothic New',sans-serif; font-size:11px; letter-spacing:0.1em; color:var(--gold); font-weight:700; margin-bottom:6px; }
+  .info-block .v{ font-size:15px; }
+  .info-block a{ color:var(--paper); text-decoration:underline; text-decoration-color:rgba(243,238,228,0.35); }
+  .sns-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid rgba(243,238,228,0.4); color:var(--paper);
+    padding:12px 20px; border-radius:2px; text-decoration:none;
+    font-family:'Zen Kaku Gothic New',sans-serif; font-size:13px; font-weight:700;
+    margin-top:8px;
+  }
+  .sns-btn:hover{ background:rgba(243,238,228,0.1); }
+  footer{
+    margin-top:80px; border-top:1px solid rgba(243,238,228,0.15);
+    padding:26px 0; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-size:12px; color:rgba(243,238,228,0.5);
+  }
+
+  /* scroll reveal */
+  .reveal{ opacity:0; transform:translateY(22px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ===== MOBILE QUICK JUMP ===== */
+  .quickjump-btn{
+    display:none;
+    position:fixed; right:18px; bottom:18px; z-index:120;
+    width:52px; height:52px; border-radius:50%;
+    background:var(--ink); color:var(--paper);
+    border:none; box-shadow:0 10px 24px -6px rgba(28,43,57,0.5);
+    align-items:center; justify-content:center; flex-direction:column; gap:2px;
+    font-family:'Zen Kaku Gothic New', sans-serif; font-size:9px; font-weight:700; letter-spacing:0.02em;
+    cursor:pointer;
+  }
+  .quickjump-btn .qj-dot{ width:4px; height:4px; border-radius:50%; background:var(--gold); margin-bottom:2px; }
+  .quickjump-sheet{
+    position:fixed; left:0; right:0; bottom:0; z-index:121;
+    background:var(--paper); border-radius:16px 16px 0 0;
+    box-shadow:0 -12px 30px rgba(28,43,57,0.25);
+    padding:10px 8px calc(env(safe-area-inset-bottom, 0px) + 14px);
+    transform:translateY(100%); transition:transform 0.3s ease;
+  }
+  .quickjump-sheet.open{ transform:translateY(0); }
+  .quickjump-sheet .qj-handle{ width:36px; height:4px; border-radius:4px; background:var(--line); margin:6px auto 12px; }
+  .quickjump-sheet a{
+    display:flex; align-items:center; gap:12px;
+    padding:13px 16px; text-decoration:none; color:var(--ink);
+    font-family:'Zen Kaku Gothic New', sans-serif; font-size:14.5px; font-weight:500;
+    border-radius:8px;
+  }
+  .quickjump-sheet a:active{ background:var(--paper-deep); }
+  .quickjump-sheet a .qj-num{
+    font-family:'Shippori Mincho', serif; font-size:12px; color:var(--gold); font-weight:700; width:18px; flex-shrink:0;
+  }
+  .quickjump-scrim{
+    position:fixed; inset:0; z-index:119; background:rgba(28,43,57,0.4);
+    opacity:0; pointer-events:none; transition:opacity 0.25s ease;
+  }
+  .quickjump-scrim.open{ opacity:1; pointer-events:auto; }
+  @media (max-width:700px){
+    .quickjump-btn{ display:flex; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand"><span class="brand-mark"></span>BOUSAIゼミな～る</a>
+    <nav class="links">
+      <a href="#about">私たちについて</a>
+      <a href="#activities">日頃の活動</a>
+      <a href="#schools">参加校</a>
+      <a href="#gallery">活動の様子</a>
+      <a href="#kokutai-history">活動の歩み</a>
+      <a href="#news">お知らせ</a>
+    </nav>
+    <a class="nav-cta" href="#news">出展レポートを見る</a>
+    <button class="menu-btn" id="menuBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<nav class="mobile-panel" id="mobilePanel">
+  <a href="#about">私たちについて</a>
+  <a href="#activities">日頃の活動</a>
+  <a href="#schools">参加校</a>
+  <a href="#gallery">活動の様子</a>
+  <a href="#kokutai-history">活動の歩み</a>
+  <a href="#news">お知らせ</a>
+  <a href="#news" class="nav-cta">出展レポートを見る</a>
+</nav>
+
+<main id="top">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow hero-eyebrow">HIGH SCHOOL DISASTER RESILIENCE NETWORK</div>
+        <h1>被災地と未災地の高校生を、<br><em>問い</em>でつなぐ。</h1>
+        <p class="hero-lede">2020年、西日本豪雨の被災地・宇和島で始まった小さな対話が、現在は全国5校・1団体の学びの輪になっています。経験の有無を超えて、防災を「自分事」にしていく高校生たちの実践共同体です。</p>
+        <div class="hero-actions">
+          <a href="#origin" class="btn-primary">私たちの物語を読む</a>
+          <a href="#schools" class="btn-ghost">参加校を見る</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><b>11校+1団体</b><span>これまでの参加実績</span></div>
+          <div class="stat"><b>2020</b><span>宇和島で発足</span></div>
+          <div class="stat"><b>2026</b><span>ぼうさいこくたい出展</span></div>
+        </div>
+      </div>
+
+      <div class="network-box" aria-hidden="true">
+        <svg viewBox="0 0 300 460">
+          <path class="jp-land" d="M 235.3,49.1 L 234.6,51.6 L 233.8,54.0 L 233.1,56.4 L 232.4,58.8 L 231.6,61.2 L 230.9,63.5 L 230.1,65.9 L 229.4,68.2 L 228.6,70.5 L 227.8,72.8 L 227.1,75.1 L 226.3,77.4 L 225.5,79.7 L 224.7,82.0 L 223.9,84.3 L 223.1,86.5 L 222.2,88.8 L 221.4,91.1 L 220.6,93.3 L 219.8,95.5 L 218.9,97.8 L 218.1,100.0 L 217.2,102.2 L 216.4,104.4 L 215.5,106.7 L 214.7,108.9 L 213.8,111.0 L 213.0,113.2 L 212.1,115.4 L 211.2,117.6 L 210.4,119.7 L 209.5,121.9 L 208.7,124.0 L 207.8,126.1 L 206.9,128.2 L 206.1,130.3 L 205.2,132.4 L 204.4,134.5 L 203.5,136.5 L 202.7,138.6 L 201.8,140.6 L 201.0,142.6 L 200.2,144.7 L 199.4,146.7 L 198.5,148.8 L 197.7,150.8 L 197.0,152.9 L 196.2,155.0 L 195.4,157.0 L 194.7,159.1 L 193.9,161.2 L 193.2,163.3 L 192.5,165.5 L 191.9,167.6 L 191.2,169.8 L 190.6,171.9 L 190.0,174.1 L 189.3,176.3 L 188.7,178.5 L 188.1,180.7 L 187.5,182.9 L 186.9,185.1 L 186.3,187.3 L 185.7,189.4 L 185.1,191.6 L 184.4,193.7 L 183.8,195.8 L 183.1,197.9 L 182.4,200.0 L 181.8,202.1 L 181.0,204.1 L 180.3,206.1 L 179.6,208.1 L 178.8,210.1 L 178.0,212.0 L 177.2,214.0 L 176.4,215.9 L 175.5,217.8 L 174.6,219.6 L 173.7,221.5 L 172.8,223.4 L 171.8,225.2 L 170.8,227.1 L 169.8,228.9 L 168.8,230.8 L 167.7,232.6 L 166.7,234.4 L 165.6,236.2 L 164.5,238.1 L 163.4,239.9 L 162.3,241.7 L 161.1,243.5 L 160.0,245.3 L 158.7,247.1 L 157.5,248.8 L 156.1,250.5 L 154.7,252.1 L 153.2,253.6 L 151.6,255.1 L 150.0,256.5 L 148.4,257.9 L 146.7,259.3 L 145.1,260.7 L 143.5,262.2 L 141.9,263.7 L 140.4,265.3 L 138.9,266.8 L 137.4,268.4 L 136.0,270.0 L 134.5,271.6 L 133.0,273.1 L 131.5,274.6 L 130.0,276.1 L 128.4,277.5 L 126.8,278.9 L 125.3,280.2 L 123.7,281.5 L 122.0,282.7 L 120.4,283.9 L 118.7,285.0 L 117.0,286.1 L 115.2,287.2 L 113.4,288.3 L 111.5,289.3 L 109.7,290.3 L 107.8,291.3 L 105.8,292.2 L 103.9,293.2 L 101.9,294.1 L 99.9,295.0 L 97.9,295.9 L 95.9,296.7 L 93.9,297.6 L 91.8,298.4 L 89.8,299.2 L 87.8,300.0 L 85.7,300.8 L 83.7,301.5 L 81.6,302.3 L 79.6,303.0 L 77.5,303.7 L 75.4,304.4 L 73.3,305.1 L 71.2,305.8 L 69.1,306.5 L 67.0,307.2 L 64.9,307.8 L 62.8,308.5 L 60.6,309.1 L 63.4,326.9 L 65.8,326.8 L 68.3,326.7 L 70.7,326.5 L 73.1,326.2 L 75.6,326.0 L 78.0,325.6 L 80.4,325.3 L 82.9,324.8 L 85.3,324.4 L 87.7,323.9 L 90.1,323.4 L 92.5,322.8 L 94.8,322.2 L 97.2,321.6 L 99.6,320.9 L 101.9,320.2 L 104.3,319.5 L 106.6,318.7 L 108.9,317.9 L 111.2,317.1 L 113.5,316.2 L 115.9,315.4 L 118.2,314.5 L 120.5,313.5 L 122.8,312.5 L 125.1,311.5 L 127.4,310.4 L 129.7,309.3 L 132.0,308.1 L 134.3,306.9 L 136.6,305.6 L 138.9,304.3 L 141.1,303.0 L 143.3,301.7 L 145.5,300.3 L 147.6,298.9 L 149.7,297.5 L 151.8,296.0 L 153.9,294.6 L 156.0,293.1 L 158.0,291.7 L 160.0,290.2 L 161.9,288.6 L 163.8,287.0 L 165.6,285.3 L 167.4,283.6 L 169.0,281.7 L 170.6,279.8 L 172.2,277.9 L 173.8,276.0 L 175.4,274.1 L 177.0,272.2 L 178.7,270.3 L 180.4,268.5 L 182.1,266.7 L 183.9,264.9 L 185.6,263.1 L 187.4,261.3 L 189.1,259.4 L 190.8,257.5 L 192.4,255.6 L 194.0,253.6 L 195.6,251.6 L 197.1,249.6 L 198.7,247.6 L 200.1,245.5 L 201.6,243.4 L 203.0,241.3 L 204.4,239.1 L 205.8,237.0 L 207.1,234.8 L 208.4,232.6 L 209.7,230.4 L 211.0,228.2 L 212.2,225.9 L 213.4,223.7 L 214.6,221.5 L 215.7,219.3 L 216.8,217.0 L 218.0,214.8 L 219.0,212.6 L 220.1,210.4 L 221.2,208.2 L 222.3,206.0 L 223.3,203.9 L 224.3,201.7 L 225.4,199.5 L 226.4,197.4 L 227.4,195.2 L 228.4,193.1 L 229.4,190.9 L 230.4,188.7 L 231.3,186.5 L 232.2,184.3 L 233.1,182.1 L 234.0,179.9 L 234.8,177.6 L 235.6,175.4 L 236.4,173.1 L 237.1,170.8 L 237.8,168.4 L 238.4,166.1 L 239.0,163.7 L 239.6,161.4 L 240.1,159.0 L 240.6,156.6 L 241.1,154.2 L 241.5,151.8 L 241.9,149.3 L 242.3,146.9 L 242.6,144.5 L 242.9,142.1 L 243.2,139.7 L 243.5,137.3 L 243.7,134.9 L 243.9,132.5 L 244.1,130.1 L 244.4,127.7 L 244.6,125.4 L 244.7,123.0 L 244.9,120.7 L 245.1,118.4 L 245.3,116.0 L 245.5,113.7 L 245.8,111.4 L 246.0,109.1 L 246.2,106.9 L 246.5,104.6 L 246.8,102.3 L 247.1,100.1 L 247.4,97.8 L 247.8,95.6 L 248.2,93.4 L 248.6,91.2 L 249.1,89.0 L 249.6,86.9 L 250.1,84.7 L 250.7,82.6 L 251.3,80.5 L 252.0,78.4 L 252.7,76.3 L 253.5,74.3 L 254.4,72.3 L 255.3,70.3 L 256.2,68.4 L 257.3,66.4 L 258.3,64.5 L 259.5,62.7 L 260.7,60.9 Z"/>
+          <path class="jp-land" d="M 97.1,332.4 L 96.4,332.8 L 95.7,333.1 L 94.9,333.5 L 94.2,333.8 L 93.5,334.2 L 92.7,334.5 L 92.0,334.9 L 91.3,335.2 L 90.6,335.5 L 89.8,335.9 L 89.1,336.2 L 88.4,336.6 L 87.7,336.9 L 87.0,337.2 L 86.3,337.5 L 85.5,337.9 L 84.8,338.2 L 84.1,338.5 L 83.4,338.8 L 82.7,339.2 L 82.0,339.5 L 81.2,339.8 L 80.5,340.1 L 79.8,340.4 L 79.1,340.8 L 78.4,341.1 L 77.7,341.4 L 76.9,341.7 L 76.2,342.0 L 75.5,342.3 L 74.8,342.6 L 74.1,342.9 L 73.3,343.3 L 72.6,343.6 L 71.9,343.9 L 71.2,344.2 L 70.4,344.5 L 69.7,344.8 L 69.0,345.1 L 68.3,345.4 L 67.5,345.7 L 66.8,346.0 L 66.1,346.3 L 65.3,346.6 L 64.6,346.9 L 63.8,347.2 L 63.1,347.5 L 62.3,347.8 L 61.6,348.1 L 60.8,348.4 L 60.1,348.7 L 59.3,349.0 L 58.5,349.3 L 57.8,349.6 L 57.0,349.9 L 56.2,350.2 L 55.5,350.5 L 54.7,350.8 L 53.9,351.1 L 56.1,364.9 L 57.0,364.9 L 58.0,364.9 L 58.9,364.9 L 59.8,364.9 L 60.8,364.9 L 61.7,364.8 L 62.6,364.8 L 63.5,364.7 L 64.5,364.6 L 65.4,364.6 L 66.3,364.5 L 67.2,364.4 L 68.2,364.2 L 69.1,364.1 L 70.0,364.0 L 70.9,363.8 L 71.8,363.7 L 72.7,363.5 L 73.6,363.3 L 74.5,363.1 L 75.4,362.9 L 76.3,362.7 L 77.2,362.5 L 78.1,362.2 L 79.0,362.0 L 79.9,361.7 L 80.8,361.5 L 81.7,361.2 L 82.5,360.9 L 83.4,360.6 L 84.3,360.3 L 85.2,360.0 L 86.0,359.7 L 86.9,359.3 L 87.7,359.0 L 88.6,358.6 L 89.4,358.2 L 90.3,357.8 L 91.1,357.5 L 92.0,357.1 L 92.8,356.6 L 93.6,356.2 L 94.4,355.8 L 95.3,355.3 L 96.1,354.9 L 96.9,354.4 L 97.7,354.0 L 98.5,353.5 L 99.3,353.0 L 100.0,352.5 L 100.8,352.0 L 101.6,351.5 L 102.4,350.9 L 103.1,350.4 L 103.9,349.8 L 104.6,349.3 L 105.4,348.7 L 106.1,348.2 L 106.9,347.6 Z"/>
+          <path class="jp-land" d="M 39.7,337.1 L 38.6,337.8 L 37.5,338.5 L 36.5,339.2 L 35.4,340.0 L 34.4,340.7 L 33.4,341.5 L 32.4,342.3 L 31.5,343.1 L 30.5,344.0 L 29.6,344.8 L 28.7,345.7 L 27.8,346.6 L 26.9,347.5 L 26.1,348.5 L 25.2,349.4 L 24.4,350.4 L 23.6,351.4 L 22.8,352.3 L 22.0,353.4 L 21.2,354.4 L 20.5,355.4 L 19.8,356.5 L 19.1,357.5 L 18.4,358.6 L 17.7,359.7 L 17.0,360.8 L 16.4,361.9 L 15.8,363.0 L 15.2,364.2 L 14.6,365.3 L 14.0,366.5 L 13.4,367.6 L 12.9,368.8 L 12.4,370.0 L 11.8,371.2 L 11.4,372.4 L 10.9,373.6 L 10.4,374.8 L 10.0,376.0 L 9.5,377.2 L 9.1,378.5 L 8.7,379.7 L 8.3,381.0 L 7.9,382.2 L 7.6,383.5 L 7.2,384.7 L 6.9,386.0 L 6.6,387.3 L 6.3,388.5 L 6.0,389.8 L 5.7,391.1 L 5.4,392.4 L 5.2,393.7 L 4.9,395.0 L 4.7,396.3 L 4.5,397.6 L 4.3,398.8 L 4.1,400.1 L 3.9,401.4 L 3.8,402.7 L 3.6,404.0 L 3.5,405.3 L 3.3,406.6 L 3.2,408.0 L 3.1,409.3 L 3.0,410.6 L 2.9,411.9 L 2.9,413.2 L 2.8,414.5 L 2.7,415.8 L 2.7,417.1 L 2.6,418.4 L 2.6,419.7 L 2.6,421.0 L 2.6,422.3 L 2.6,423.6 L 2.6,424.9 L 2.6,426.2 L 2.6,427.5 L 2.6,428.8 L 2.6,430.1 L 2.6,431.4 L 2.7,432.7 L 2.7,434.1 L 2.8,435.4 L 2.8,436.7 L 2.9,438.0 L 3.0,439.3 L 3.0,440.6 L 25.0,439.4 L 24.9,438.3 L 24.9,437.2 L 24.9,436.2 L 24.9,435.1 L 24.9,434.1 L 25.0,433.0 L 25.1,432.0 L 25.2,431.0 L 25.3,429.9 L 25.5,428.9 L 25.6,427.9 L 25.8,426.8 L 26.0,425.8 L 26.2,424.8 L 26.5,423.8 L 26.7,422.8 L 27.0,421.8 L 27.3,420.8 L 27.6,419.8 L 27.9,418.8 L 28.3,417.8 L 28.6,416.8 L 29.0,415.9 L 29.4,414.9 L 29.8,413.9 L 30.2,413.0 L 30.6,412.0 L 31.0,411.1 L 31.4,410.1 L 31.9,409.2 L 32.3,408.3 L 32.8,407.3 L 33.3,406.4 L 33.8,405.5 L 34.2,404.6 L 34.7,403.6 L 35.2,402.7 L 35.8,401.8 L 36.3,400.9 L 36.8,400.0 L 37.3,399.1 L 37.8,398.2 L 38.4,397.3 L 38.9,396.4 L 39.4,395.5 L 40.0,394.6 L 40.5,393.7 L 41.1,392.9 L 41.6,392.0 L 42.2,391.1 L 42.7,390.2 L 43.2,389.3 L 43.8,388.4 L 44.3,387.5 L 44.9,386.6 L 45.4,385.7 L 46.0,384.8 L 46.5,383.9 L 47.0,383.0 L 47.6,382.1 L 48.1,381.2 L 48.6,380.3 L 49.2,379.4 L 49.7,378.4 L 50.2,377.5 L 50.7,376.6 L 51.2,375.6 L 51.7,374.7 L 52.2,373.7 L 52.7,372.8 L 53.2,371.8 L 53.6,370.8 L 54.1,369.9 L 54.6,368.9 L 55.0,367.9 L 55.5,366.9 L 55.9,365.9 L 56.3,364.8 L 56.7,363.8 L 57.1,362.8 L 57.5,361.7 L 57.9,360.7 L 58.3,359.6 L 58.7,358.5 L 59.0,357.4 L 59.4,356.3 L 59.7,355.2 L 60.0,354.0 L 60.3,352.9 Z"/>
+
+          <path class="net-line a" d="M62,352 C90,300 105,230 130,150" />
+          <path class="net-line b" d="M62,352 C120,320 170,220 213,150" />
+          <path class="net-line c" d="M62,352 C90,330 120,300 150,272" />
+          <path class="net-line d" d="M62,352 C80,335 95,320 108,304" />
+          <path class="net-line e" d="M62,352 C75,335 80,320 85,308" />
+          <path class="net-line f" d="M62,352 C48,368 34,382 23,397" />
+
+          <circle class="net-pulse" cx="62" cy="352" r="5" style="animation-delay:0s" />
+          <circle class="net-pulse" cx="62" cy="352" r="5" style="animation-delay:1.2s" />
+
+          <circle class="net-node origin" cx="62" cy="352" r="7"/>
+          <text class="net-label origin" x="16" y="378">宇和島（起点）</text>
+          <text class="net-label origin sub" x="16" y="390">宇和島東・南／八幡浜・南宇和</text>
+
+          <circle class="net-node" cx="238" cy="62" r="5"/>
+          <text class="net-label" x="196" y="50">大湊高校</text>
+          <text class="net-label sub" x="196" y="61">下北BOUSAIネットワーク（青森）</text>
+
+          <circle class="net-node" cx="213" cy="150" r="5"/>
+          <text class="net-label" x="221" y="146">福島高校</text>
+          <text class="net-label sub" x="221" y="157">（福島）</text>
+
+          <circle class="net-node" cx="150" cy="272" r="5"/>
+          <text class="net-label" x="158" y="260">大府高校</text>
+          <text class="net-label sub" x="158" y="271">（愛知）</text>
+
+          <circle class="net-node" cx="108" cy="304" r="5"/>
+          <text class="net-label" x="116" y="300">あすパ・ユース</text>
+          <text class="net-label sub" x="116" y="311">神戸大附属中等（神戸）</text>
+
+          <circle class="net-node" cx="85" cy="308" r="5"/>
+          <text class="net-label" x="8" y="304" text-anchor="start">総社・矢掛</text>
+          <text class="net-label sub" x="8" y="315" text-anchor="start">（岡山）</text>
+
+          <circle class="net-node" cx="23" cy="397" r="5"/>
+          <text class="net-label" x="0" y="415">熊本第二</text>
+          <text class="net-label sub" x="0" y="426">（熊本）</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">MISSION</div>
+        <h2>「忘れない」を、繰り返すだけで終わらせない。</h2>
+      </div>
+      <div class="about-grid">
+        <div class="mission-card reveal">
+          <p>「大規模災害」という事象で繋がった多地域の高校生が、次のXデーに向けて作っておかないといけない他地域社会を目指し、地域とは・命とは・つながりとは、について話し合う。それが BOUSAIゼミな～る のミッションです。</p>
+        </div>
+        <div class="about-body reveal">
+          <p><strong>被災地と未災地。</strong>この社会は、体験を語り継ぐことと、忘れていくことを、同時に繰り返してきました。BOUSAIゼミな～るは、その間に立つ高校生たちが、互いの現場から学び合うための対話の場です。</p>
+          <p>高校生等を中心とした多地域連携を通じて「被災地」の教訓を「未災地」に繋げ、災害からの復興を考える活動を通じて、大人（保護者）も含め<strong>災害レジリエンスの社会的構築</strong>を目指しています。</p>
+          <p>目指すのは、経験の有無を超えて「自分事化」していくプロセスそのものを、高校生自身の言葉で可視化すること。この取組は日本災害復興学会でも研究発表されています。</p>
+          <p style="margin-top:26px; padding-top:22px; border-top:1px solid var(--line);"><strong>大切にしてきたこと</strong><br>高校生等による自主性を重んじること／多地域の高校生の交流を実践すること／防災に関する学びを深めること／大人は高校生等の学びの支援に徹すること。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CORE CONCEPT ===== -->
+  <section id="core-concept" class="section-pad" style="padding-top:0;">
+    <div class="wrap">
+      <div class="core-grid reveal">
+        <div class="core-card">
+          <div class="core-icon">🌏</div>
+          <h4>被災地 × 未災地</h4>
+          <p>多地域間の対話と現場知の集積。</p>
+        </div>
+        <div class="core-card">
+          <div class="core-icon">🧠</div>
+          <h4>想像する力を育てる</h4>
+          <p>「経験しなくても想像できる」力を育てる。</p>
+        </div>
+        <div class="core-card">
+          <div class="core-icon">🔥</div>
+          <h4>自分事化</h4>
+          <p>傍観者から当事者へ。</p>
+        </div>
+        <div class="core-card">
+          <div class="core-icon">⚡</div>
+          <h4>防災訓練＝人材育成</h4>
+          <p>イノベーション人材育成（ブリコラージュ能力の涵養）。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ACTIVITIES ===== -->
+  <section id="activities" class="section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">EVERYDAY PRACTICE</div>
+        <h2>日頃の活動</h2>
+        <p>定期的なオンライン定例会を軸に、4つの柱で活動を積み重ねています。</p>
+      </div>
+    </div>
+    <div class="pillar-grid reveal">
+      <div class="pillar-card">
+        <div class="pillar-num">01</div>
+        <h4>多地域連携</h4>
+        <p>愛媛・福島・岡山・兵庫・青森など、全国の高校生をオンラインで繋ぐ。</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">02</div>
+        <h4>対話と学び合い</h4>
+        <p>被災体験・防災研究を、高校生自身の言葉で報告・議論する定例会。</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">03</div>
+        <h4>現場知の集積</h4>
+        <p>体験から得た「現場知」を、多地域間で蓄積・継承する仕組み。</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">04</div>
+        <h4>社会への発信</h4>
+        <p>学会発表やイベント出展を通じて、活動の成果を地域の外へひらく。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ORIGIN ===== -->
+  <section id="origin" class="section-pad">
+    <div class="wrap">
+      <div class="origin-inner">
+        <div class="origin-plate reveal">
+          <div class="year">2018<span style="font-size:22px; opacity:0.55;"> → </span>2020</div>
+          <div class="place">西日本豪雨 被災 → 宇和島で発足</div>
+          <p>2018年（平成30年）、西日本豪雨で甚大な被害を受けた愛媛県宇和島市。特定非営利活動法人宇和島NPOセンターの主催により、2020年11月8日に第1回が開催されました。</p>
+        </div>
+        <div class="origin-text reveal">
+          <div class="eyebrow">ORIGIN STORY</div>
+          <h3 style="margin-top:12px;">起点は、ひとつの被災地でした。</h3>
+          <p>2018年、西日本豪雨は愛媛県宇和島市に甚大な被害をもたらしました。その後、特定非営利活動法人宇和島NPOセンターの主催により、2020年11月8日に「きさいや！BOUSAIゼミな～る」として第1回を開催。<strong>宇和島東高校と、福島県立福島高等学校との交流</strong>から、すべてが始まりました。</p>
+          <p>「大規模災害」という事象で繋がった多地域の高校生が、次のXデーに向けて作っておかないといけない他地域社会を目指し、地域とは・命とは・つながりとは、について話し合う ── それがミッションです。当初は宇和島市内だけで完結していた対話が、少しずつ他の被災地・未災地の高校とつながり、多地域間の対話と現場知の集積へと育っていきました。今では、福島・岡山・兵庫・青森・愛知・熊本・愛媛 ── 距離も経験も異なる高校生たちが、同じ問いを共有しています。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCHOOLS ===== -->
+  <section id="schools" class="section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">PARTICIPATING SCHOOLS</div>
+        <h2>5校・1団体、それぞれの現場から。</h2>
+        <p>拠点も、抱える課題も違う。だからこそ、持ち寄る知には厚みがあります。（現在、BOUSAIゼミな～るとして活動中の5校・1団体です）</p>
+      </div>
+
+      <div class="school-list reveal">
+        <div class="school-row origin">
+          <div class="school-node">起</div>
+          <div class="school-name">愛媛県立宇和島東高等学校<span class="school-chevron" aria-hidden="true"></span></div>
+          <div class="school-focus"><b>西日本豪雨の経験を踏まえ、地元発の防災を実践・発信。</b>すべての活動の起点となった学校。<span class="tag-origin">起点校</span></div>
+        </div>
+        <div class="school-row">
+          <div class="school-node">南</div>
+          <div class="school-name">宇和島南中等教育学校<span class="sub">2年目から参加</span><span class="school-chevron" aria-hidden="true"></span></div>
+          <div class="school-focus"><b>地元・宇和島の防災を、次の世代の視点で継承。</b>宇和島東高校に続き、活動2年目から加わった。</div>
+        </div>
+        <div class="school-row">
+          <div class="school-node">福</div>
+          <div class="school-name">福島県立福島高等学校<span class="school-chevron" aria-hidden="true"></span></div>
+          <div class="school-focus"><b>3.11後の地震データを科学的に分析。</b>震災後15年の観測データから、地域の揺れの特性を読み解く。</div>
+        </div>
+        <div class="school-row">
+          <div class="school-node">総</div>
+          <div class="school-name">岡山県立総社高等学校<span class="school-chevron" aria-hidden="true"></span></div>
+          <div class="school-focus"><b>能登半島地震の被災地から学ぶ。</b>遠く離れた被災地に足を運び、自分たちの地域に引きつけて考える。</div>
+        </div>
+        <div class="school-row">
+          <div class="school-node">あ</div>
+          <div class="school-name">あすパ・ユース震災語り部隊<span class="sub">神戸市灘区</span><span class="school-chevron" aria-hidden="true"></span></div>
+          <div class="school-focus"><b>阪神・淡路大震災の体験伝承。</b>語り継ぐ側として、次の世代に記憶をつなぐ実践知を蓄積する。</div>
+        </div>
+        <div class="school-row">
+          <div class="school-node">大</div>
+          <div class="school-name">青森県立大湊高等学校<span class="sub">下北BOUSAIネットワーク</span><span class="school-chevron" aria-hidden="true"></span></div>
+          <div class="school-focus"><b>原発立地・過疎地域の防災実践。</b>人口減少が進む地域固有の防災課題に向き合う。</div>
+        </div>
+      </div>
+
+      <div class="past-schools reveal">
+        <div class="eyebrow" style="margin-bottom:14px;">SO FAR</div>
+        <h3 style="font-size:17px; font-weight:700; margin-bottom:16px;">これまでの参加校</h3>
+        <p style="color:var(--ink-soft); font-size:14.5px; margin-bottom:20px; max-width:56ch;">現在の5校・1団体に加え、これまで以下の学校もBOUSAIゼミな～るの活動に参加してきました。</p>
+        <div class="past-tags">
+          <span class="past-tag">愛媛県立八幡浜高等学校</span>
+          <span class="past-tag">愛媛県立南宇和高等学校</span>
+          <span class="past-tag">岡山県立矢掛高等学校</span>
+          <span class="past-tag">愛知県立大府高等学校</span>
+          <span class="past-tag">熊本県立熊本第二高等学校</span>
+          <span class="past-tag">神戸大学附属中等教育学校</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section id="gallery" class="section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">SCENES</div>
+        <h2>活動の様子</h2>
+        <p>画面越しの対話も、現地に集まっての研修も、すべてがこの取組の一部です。</p>
+      </div>
+      <div class="gallery-grid reveal">
+        <figure class="gallery-item">
+          <img src="images/img01.jpg" alt="2020年、発足期のオンライン交流の様子" loading="lazy">
+          <figcaption>発足期のオンライン交流（2020年〜）</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="images/img02.jpg" alt="ぼうさいこくたい熊本2024での現地研修の集合写真（ノエビアグリーン財団ご支援）" loading="lazy">
+          <figcaption>ぼうさいこくたい熊本（2024年）現地研修（ノエビアグリーン財団 ご支援）</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="images/img03.jpg" alt="神戸研修での高校生の学び合いの様子" loading="lazy">
+          <figcaption>神戸研修（阪神・淡路大震災30年）</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="images/img04.jpg" alt="ぼうさいこくたい神戸2022での様子" loading="lazy">
+          <figcaption>ぼうさいこくたい神戸（2022年）にて</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ARCHIVE ===== -->
+  <section id="archive" class="section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">RECORD</div>
+        <h2>対話は、記録されて初めて、次に手渡せる。</h2>
+        <p>高校生たちの探究と発表は、学術的な場でも積み重ねられています。</p>
+      </div>
+    </div>
+    <div class="archive-grid reveal">
+      <div class="archive-card">
+        <div class="tag">ACADEMIC</div>
+        <h4>日本災害復興学会 研究発表</h4>
+        <p>高校生の実践を、学術的な災害復興研究の文脈に接続。</p>
+      </div>
+      <div class="archive-card">
+        <div class="tag">FIELD</div>
+        <h4>多地域交流・現地訪問</h4>
+        <p>被災地と未災地、高校生同士が互いの現場を訪ね合う交流活動。</p>
+      </div>
+      <div class="archive-card">
+        <div class="tag">EXHIBITION</div>
+        <h4>各地イベントでの出展・発表</h4>
+        <p>活動の成果を、地域の外へ ── 一般来場者との対話の場をつくる。</p>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="academic-list reveal">
+        <div class="academic-row">
+          <div class="academic-year">2021<span>岩手大会</span></div>
+          <div class="academic-title">高校生多地域ネットワークを通じた<br>災害レジリエンスの社会的構築</div>
+        </div>
+        <div class="academic-row">
+          <div class="academic-year">2022<span>京都大会</span></div>
+          <div class="academic-title">「主体的対話的で深い学び」による<br>災害レジリエンスの社会的構築</div>
+        </div>
+        <div class="academic-row">
+          <div class="academic-year">2023<span>静岡大会</span></div>
+          <div class="academic-title">災害対応訓練の価値転換に向けて<br>─企業における人的資本形成の手段として─</div>
+        </div>
+      </div>
+      <p class="academic-note">ファシリテーターとして、愛媛大学・福島大学・元東京理科大学の研究者が参画しています。</p>
+
+      <div class="support-block reveal">
+        <div class="eyebrow" style="margin-bottom:14px;">SUPPORT &amp; PARTNERSHIP</div>
+        <h3 style="font-size:17px; font-weight:700; margin-bottom:16px; color:var(--paper);">支援・連携機関</h3>
+        <div class="past-tags">
+          <span class="past-tag light">宇和島市（後援／地域づくり団体活動補助金）</span>
+          <span class="past-tag light">愛媛県</span>
+          <span class="past-tag light">きずな推進連携パートナー</span>
+          <span class="past-tag light">公益財団法人ノエビアグリーン財団（助成金採択）</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KOKUTAI HISTORY ===== -->
+  <section id="kokutai-history" class="section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">OUR JOURNEY, 2020-2026</div>
+        <h2>活動の歩み</h2>
+        <p>2020年の発足から、第6クールを迎える2026年まで。積み重ねてきた一つひとつです。</p>
+      </div>
+
+      <div class="kt-line reveal">
+        <div class="kt-track" aria-hidden="true"></div>
+
+        <div class="kt-row">
+          <div class="kt-year">2020<br><span style="font-size:11px; opacity:0.7;">第1クール</span></div>
+          <div class="kt-dot" aria-hidden="true"></div>
+          <div class="kt-body">
+            <div class="kt-place">発足</div>
+            <div class="kt-desc"><ul>
+              <li>11/8 第1回「きさいや！BOUSAIゼミな～る」開催（コスモスホール三間）</li>
+              <li>宇和島東高校 × 福島県立福島高等学校</li>
+              <li>「なりゆきの未来から　なりたい未来へ」を掲げる</li>
+              <li>主催：特定非営利活動法人宇和島NPOセンター</li>
+            </ul></div>
+            <div class="kt-posters"><figure class="kt-poster"><img src="images/img05.jpg" alt="表面" loading="lazy"><figcaption>表面</figcaption></figure><figure class="kt-poster"><img src="images/img06.jpg" alt="裏面" loading="lazy"><figcaption>裏面</figcaption></figure></div>
+          </div>
+        </div>
+
+        <div class="kt-row">
+          <div class="kt-year">2021<br><span style="font-size:11px; opacity:0.7;">第2クール</span></div>
+          <div class="kt-dot" aria-hidden="true"></div>
+          <div class="kt-body">
+            <div class="kt-place">全国へ拡大</div>
+            <div class="kt-desc"><ul>
+              <li>11/8 第2回：灘高校・矢掛高校・南宇和高校が新たに参加</li>
+              <li>12/13 第3回：宇和島南中等教育学校が加わる</li>
+              <li>被災地と未災地をオンラインで繋ぐ形式を確立</li>
+              <li>日本災害復興学会（岩手大会）で研究発表</li>
+            </ul></div>
+            <div class="kt-posters"><figure class="kt-poster"><img src="images/img07.jpg" alt="2021.11.8 第2回" loading="lazy"><figcaption>2021.11.8 第2回</figcaption></figure><figure class="kt-poster"><img src="images/img08.jpg" alt="2021.12.13 第3回" loading="lazy"><figcaption>2021.12.13 第3回</figcaption></figure></div>
+          </div>
+        </div>
+
+        <div class="kt-row">
+          <div class="kt-year">2022<br><span style="font-size:11px; opacity:0.7;">第3クール</span></div>
+          <div class="kt-dot" aria-hidden="true"></div>
+          <div class="kt-body">
+            <div class="kt-place">神戸<span class="tag-current" style="background:var(--river-deep);">こくたい初出展</span></div>
+            <div class="kt-desc"><ul>
+              <li>3/27 第4回：さすけなぶるとのスペシャルコラボ（リアル×Zoom／YouTubeライブ高校生発表）</li>
+              <li>7/25 「BOUSAIゼミな～る×ぼうさいこくたい」プロジェクト キックオフ</li>
+              <li>10/22 神戸IHDセンタービルにて、ぼうさいこくたいに初出展</li>
+              <li>矢掛高校「災害時の匂いレシピ」が翌日の神戸新聞に掲載</li>
+              <li>日本災害復興学会（京都大会）で研究発表</li>
+            </ul></div>
+            <div class="kt-posters"><figure class="kt-poster"><img src="images/img09.jpg" alt="2022.3.27 第4回" loading="lazy"><figcaption>2022.3.27 第4回</figcaption></figure><figure class="kt-poster"><img src="images/img10.jpg" alt="2022.7.25 キックオフ" loading="lazy"><figcaption>2022.7.25 キックオフ</figcaption></figure><figure class="kt-poster"><img src="images/img11.jpg" alt="2022.10.22 神戸出展" loading="lazy"><figcaption>2022.10.22 神戸出展</figcaption></figure></div>
+          </div>
+        </div>
+
+        <div class="kt-row">
+          <div class="kt-year">2023<br><span style="font-size:11px; opacity:0.7;">第4クール</span></div>
+          <div class="kt-dot" aria-hidden="true"></div>
+          <div class="kt-body">
+            <div class="kt-place">横浜<span class="tag-current" style="background:var(--river-deep);">こくたい出展</span></div>
+            <div class="kt-desc"><ul>
+              <li>9/18 ぼうさいこくたい2023 KANAGAWA（横浜）に出展。テーマは関東大震災100年</li>
+              <li>参加校が9校に拡大（福島・原町・大府・矢掛・灘・神戸常盤女子・宇和島南中等・宇和島東・八幡浜・あすパユース 他）</li>
+              <li>日本災害復興学会（静岡大会）で研究発表</li>
+            </ul></div>
+            <div class="kt-posters"><figure class="kt-poster"><img src="images/img12.jpg" alt="2023.9.18 横浜" loading="lazy"><figcaption>2023.9.18 横浜</figcaption></figure></div>
+          </div>
+        </div>
+
+        <div class="kt-row">
+          <div class="kt-year">2024<br>–2025<br><span style="font-size:11px; opacity:0.7;">第5クール</span></div>
+          <div class="kt-dot" aria-hidden="true"></div>
+          <div class="kt-body">
+            <div class="kt-place">熊本・神戸<span class="tag-current" style="background:var(--river-deep);">こくたい77名参加</span><span class="tag-own">神戸研修</span></div>
+            <div class="kt-desc"><ul>
+              <li>公益財団法人ノエビアグリーン財団の協賛採択</li>
+              <li>約60名エントリー（過去最高）</li>
+              <li>10/19 ぼうさいこくたい2024 in 熊本に出展。77名参加・大盛況。熊本第二高校が新たに参加</li>
+              <li>1/10 FUKUSHIMA 上映会を各校で開催</li>
+              <li>阪神・淡路大震災30年。神戸・淡路島で現地研修（神戸研修）を実施</li>
+              <li>宇和島防災シンポジウムで特別報告</li>
+              <li>令和7年度 宇和島市地域づくり団体活動補助金 採択</li>
+            </ul></div>
+            <div class="kt-posters"><figure class="kt-poster"><img src="images/img13.jpg" alt="2024.10.19 熊本" loading="lazy"><figcaption>2024.10.19 熊本</figcaption></figure></div>
+          </div>
+        </div>
+
+        <div class="kt-row current">
+          <div class="kt-year">2026<br><span style="font-size:11px; opacity:0.7;">第6クール</span></div>
+          <div class="kt-dot" aria-hidden="true"></div>
+          <div class="kt-body">
+            <div class="kt-place">鳥取・倉吉<span class="tag-current">今回</span></div>
+            <div class="kt-desc"><ul>
+              <li>ぼうさいこくたい（鳥取・倉吉）10/17・18 へ出展</li>
+              <li>B-099 ブース展示。5校・1団体が参加</li>
+            </ul></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEWS ===== -->
+  <section id="news" class="section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">NEWS &amp; REPORT</div>
+        <h2>お知らせ</h2>
+      </div>
+
+      <article class="report reveal" id="report-2026">
+        <time class="report-date">2026.10.19</time>
+        <h3>レポート｜ぼうさいこくたい2026（鳥取）に出展しました</h3>
+        <p>10月17日・18日、ぼうさいこくたい2026（鳥取）。被災地と未災地を結ぶ高校生の多地域連携を通じて、災害レジリエンスの社会的構築を目指す「BOUSAIゼミな～る」は、今年度は「ブース展示」として出展しました。</p>
+        <p>北は大湊高校・下北BOUSAIネットワーク（青森）、福島高校（福島）、あすパ・ユース震災語り部隊、総社高校（岡山）、宇和島東高校・宇和島南中等教育学校（愛媛）の高校生・大学生メンバーが集結。ご来場の皆様に活動をご紹介するとともに、ヒントをいただく二日間となりました。</p>
+        <p>災害対応に取り組む皆様との対話を通じて、たくさんの気づきの種をいただきました。ご参加の皆様、ご来場くださった皆様、ありがとうございました。</p>
+        <div class="report-photos"><figure class="rp-item rp-wide"><img src="images/img14.jpg" alt="ぼうさいこくたい2026会場前での集合写真" loading="lazy"><figcaption>参加メンバーの集合写真（鳥取県立美術館前）</figcaption></figure><figure class="rp-item"><img src="images/img15.jpg" alt="B-099ブースで高校生が活動を紹介する様子" loading="lazy"><figcaption>ブース前での対話（B-099）</figcaption></figure><figure class="rp-item"><img src="images/img16.jpg" alt="倉吉駅前に立つぼうさいこくたい2026 in 鳥取ののぼり" loading="lazy"><figcaption>ぼうさいこくたい2026 in 鳥取（倉吉市）</figcaption></figure><figure class="rp-item"><img src="images/img17.jpg" alt="B-099ブースのパネル展示を見る来場者" loading="lazy"><figcaption>各校の探究ポスターを前に</figcaption></figure><figure class="rp-item"><img src="images/img18.jpg" alt="鳥取県立美術館の外観" loading="lazy"><figcaption>会場の鳥取県立美術館</figcaption></figure></div>
+      </article>
+
+      <div class="event-card reveal">
+        <div class="event-poster">
+          <img src="images/img19.jpg" alt="ぼうさいこくたい2026 出展告知ポスター">
+        </div>
+        <div class="event-date">
+          <div class="d">10.17</div>
+          <div class="m">— 10.18, 2026</div>
+        </div>
+        <div class="event-body">
+          <h3>ぼうさいこくたい2026 に出展しました</h3>
+          <p>「高校生の私たちにできること」ー被災地・地域・データ・科学、多視点から拓く災害レジリエンス</p>
+          <p>5校・1団体の高校生が、それぞれの探究をブースで発表・交流します。</p>
+          <div class="event-meta">
+            <div><b>出展番号</b>B-099（ブース展示）</div>
+            <div><b>会場</b>鳥取県立美術館 ひろま</div>
+            <div><b>時間</b>10:30〜17:30</div>
+            <div><b>主催</b>防災推進国民大会2026実行委員会</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-list reveal">
+        <div class="news-item"><time>2026.10</time><span><a href="#report-2026">ぼうさいこくたい2026（鳥取）出展レポートを掲載しました。</a></span></div>
+        <div class="news-item"><time>2026.08</time><span>ぼうさいこくたい2026 出展告知ポスターが完成しました。</span></div>
+        <div class="news-item"><time>2026.08</time><span>ホームページを作成しました。</span></div>
+        <div class="news-item"><time>2026.08</time><span>ぼうさいこくたい2026 出展者マイページを提出しました。</span></div>
+        <div class="news-item"><time>2020.10</time><span>愛媛県立宇和島東高校と福島県立福島高校とのオンライン対話から発足しました。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="section-pad">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div>
+          <div class="section-head reveal" style="margin-bottom:36px;">
+            <div class="eyebrow">CONTACT</div>
+            <h2>話を聞きに来てください。</h2>
+            <p>現場での交流も、活動へのご質問も、いつでも歓迎しています。</p>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="info-block">
+            <div class="k">運営事務局</div>
+            <div class="v">BOUSAIゼミな～る実行委員会<br>（愛媛大学地域協働推進機構内　前田眞）</div>
+          </div>
+          <div class="info-block">
+            <div class="k">お問い合わせ</div>
+            <div class="v"><a href="mailto:bouzai.seminar.2020kara@gmail.com">bouzai.seminar.2020kara@gmail.com</a></div>
+          </div>
+          <div class="info-block">
+            <div class="k">SNS</div>
+            <a class="sns-btn" href="https://www.instagram.com/bousai_zemi_na_ru/" target="_blank" rel="noopener">Instagram で見る ↗</a>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <span>© 2026 BOUSAIゼミな～る実行委員会</span>
+        <span>被災地と未災地の高校生をつなぐ、対話のプラットフォーム</span>
+      </footer>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== MOBILE QUICK JUMP ===== -->
+<button class="quickjump-btn" id="qjBtn" aria-label="目次を開く">
+  <span class="qj-dot"></span>目次
+</button>
+<div class="quickjump-scrim" id="qjScrim"></div>
+<div class="quickjump-sheet" id="qjSheet">
+  <div class="qj-handle"></div>
+  <a href="#about"><span class="qj-num">01</span>私たちについて</a>
+  <a href="#activities"><span class="qj-num">02</span>日頃の活動</a>
+  <a href="#origin"><span class="qj-num">03</span>起点</a>
+  <a href="#schools"><span class="qj-num">04</span>参加校</a>
+  <a href="#gallery"><span class="qj-num">05</span>活動の様子</a>
+  <a href="#kokutai-history"><span class="qj-num">06</span>活動の歩み</a>
+  <a href="#news"><span class="qj-num">07</span>お知らせ</a>
+  <a href="#contact"><span class="qj-num">08</span>お問い合わせ</a>
+</div>
+
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold:0.14 });
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const mobilePanel = document.getElementById('mobilePanel');
+  const scrim = document.getElementById('scrim');
+
+  function openMenu(){
+    menuBtn.setAttribute('aria-expanded','true');
+    mobilePanel.classList.add('open');
+    scrim.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu(){
+    menuBtn.setAttribute('aria-expanded','false');
+    mobilePanel.classList.remove('open');
+    scrim.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  menuBtn.addEventListener('click', ()=>{
+    const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+    isOpen ? closeMenu() : openMenu();
+  });
+  scrim.addEventListener('click', closeMenu);
+  mobilePanel.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click', closeMenu);
+  });
+  window.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape') closeMenu();
+  });
+
+  // ===== mobile quick-jump =====
+  const qjBtn = document.getElementById('qjBtn');
+  const qjSheet = document.getElementById('qjSheet');
+  const qjScrim = document.getElementById('qjScrim');
+  function qjOpen(){ qjSheet.classList.add('open'); qjScrim.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function qjClose(){ qjSheet.classList.remove('open'); qjScrim.classList.remove('open'); document.body.style.overflow = ''; }
+  if(qjBtn){
+    qjBtn.addEventListener('click', qjOpen);
+    qjScrim.addEventListener('click', qjClose);
+    qjSheet.querySelectorAll('a').forEach(a=>a.addEventListener('click', qjClose));
+  }
+
+  // ===== mobile school accordion =====
+  document.querySelectorAll('.school-row').forEach(row=>{
+    row.addEventListener('click', ()=>{
+      if(window.innerWidth > 700) return;
+      row.classList.toggle('expanded');
+    });
+  });
+</script>
+
+</body>
+</html>
